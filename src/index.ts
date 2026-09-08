@@ -1,2 +1,6 @@
-export * as Logger  from "./logger.js";
-export * as Throttle  from "./throtle.js";
+export * from "./logger.js";
+export * from "./throtle.js";
+
+/* export { Logger } from "./logger";
+export { ct } from "./throttle";
+export type { ThrottleOptions } from "./throttle"; */
