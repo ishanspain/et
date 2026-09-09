@@ -123,6 +123,15 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
+  test-two:
+    dependencies:
+      et:
+        specifier: file:../express-throtle-1.0.0.tgz
+        version: express-throtle@file:express-throtle-1.0.0.tgz(express@5.2.1)
+      express-throtle:
+        specifier: file:C:/Users/User/Desktop/et/express-throtle-1.0.0.tgz
+        version: file:express-throtle-1.0.0.tgz(express@5.2.1)
+
 packages:
 
   '@esbuild/aix-ppc64@0.27.7':
@@ -592,6 +601,12 @@ packages:
   etag@1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
+
+  express-throtle@file:express-throtle-1.0.0.tgz:
+    resolution: {integrity: sha512-L3aDHfo0iperW63XM1gYVCjsbV88c6DiqOFKcH0Y4wwk1A32WbNW71xPtglg6xsGZzyBnxNs41FBUcEfvQ3WgQ==, tarball: file:express-throtle-1.0.0.tgz}
+    version: 1.0.0
+    peerDependencies:
+      express: ^5.2.1
 
   express@5.2.1:
     resolution: {integrity: sha512-hIS4idWWai69NezIdRt2xFVofaF4j+6INOpJlVOLDO8zXGpUVEVzIYk12UUi2JzjEzWL3IOAxcTubgz9Po0yXw==}
@@ -1254,6 +1269,10 @@ snapshots:
   escape-html@1.0.3: {}
 
   etag@1.8.1: {}
+
+  express-throtle@file:express-throtle-1.0.0.tgz(express@5.2.1):
+    dependencies:
+      express: 5.2.1
 
   express@5.2.1:
     dependencies:

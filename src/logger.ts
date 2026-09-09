@@ -1,4 +1,4 @@
-type env = 'dev' | 'prod' | 'test';
+type env = 'dev' | 'prod';
 
 export class Logger {
   constructor(private readonly env: env) {}
