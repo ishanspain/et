@@ -68,5 +68,5 @@ export async function generateQrCode(content: string, width = 500): Promise<stri
 }
 
 
-const qrRes =  await generateQrCode('https://wa.me/918920827507', 500)
-await writeFile('public/amity-wa.svg', qrRes, 'utf8');
+const qrRes =  await generateQrCode('upi://pay?pa=eazypay.8KVDV4D8IDC28NP@icici&pn=MerchantName&cu=INR', 500)
+await writeFile('public/amity-at-pay.svg', qrRes, 'utf8');
