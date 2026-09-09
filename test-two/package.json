@@ -1,6 +1,0 @@
-{
-  "name": "test-two",
-  "dependencies": {
-    "express-throtle": "file:C:/Users/User/Desktop/et/express-throtle-1.0.0.tgz"
-  }
-}
