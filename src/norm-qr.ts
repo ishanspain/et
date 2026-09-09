@@ -37,5 +37,5 @@ export async function generateNormalQrCode(
   return qrCode.getSvgString();
 }
 
-const qrRes = await generateNormalQrCode('https://wa.me/918920827507', 500);
-await writeFile('public/normal-qr.svg', qrRes, 'utf8');
+const qrRes = await generateNormalQrCode('upi://pay?pa=eazypay.8KVDV4D8IDC28NP@icici&pn=Ishan%20Sharma&cu=INR', 500);
+await writeFile('public/at-amity-pay.svg', qrRes, 'utf8');
