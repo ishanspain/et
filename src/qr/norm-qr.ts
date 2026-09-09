@@ -1,5 +1,5 @@
-import { writeFile } from 'node:fs/promises';
-import QrCodeWithLogo from 'qrcode-with-logos';
+import { writeFile } from "node:fs/promises";
+import QrCodeWithLogo from "qrcode-with-logos";
 
 type NormalQrCodeInstance = {
   getSvgString(): Promise<string>;
@@ -8,9 +8,9 @@ type NormalQrCodeInstance = {
 const QrCodeWithLogoConstructor = QrCodeWithLogo as unknown as new (options: {
   content: string;
   width: number;
-  renderer: 'svg';
+  renderer: "svg";
   nodeQrCodeOptions: {
-    errorCorrectionLevel: 'M';
+    errorCorrectionLevel: "M";
     margin: number;
   };
 }) => NormalQrCodeInstance;
@@ -21,15 +21,15 @@ export async function generateNormalQrCode(
   width = 500,
 ): Promise<string> {
   if (!content.trim()) {
-    throw new TypeError('QR code content must not be empty.');
+    throw new TypeError("QR code content must not be empty.");
   }
 
   const qrCode = new QrCodeWithLogoConstructor({
     content,
     width,
-    renderer: 'svg',
+    renderer: "svg",
     nodeQrCodeOptions: {
-      errorCorrectionLevel: 'M',
+      errorCorrectionLevel: "M",
       margin: 24,
     },
   });
@@ -37,5 +37,8 @@ export async function generateNormalQrCode(
   return qrCode.getSvgString();
 }
 
-const qrRes = await generateNormalQrCode('upi://pay?pa=eazypay.8KVDV4D8IDC28NP@icici&pn=Ishan%20Sharma&cu=INR', 500);
-await writeFile('public/at-amity-pay.svg', qrRes, 'utf8');
+const qrRes = await generateNormalQrCode(
+  "upi://pay?pa=eazypay.8KVDV4D8IDC28NP@icici&pn=Ishan%20Sharma&cu=INR",
+  500,
+);
+await writeFile("public/at-amity-pay.svg", qrRes, "utf8");
