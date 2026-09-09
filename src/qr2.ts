@@ -1,5 +1,4 @@
-import { readFile, writeFile  } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { writeFile } from 'node:fs/promises';
 import QrCodeWithLogo from 'qrcode-with-logos';
 
 type QrCodeWithLogoInstance = {
@@ -26,10 +25,14 @@ const QrCodeWithLogoConstructor = QrCodeWithLogo as unknown as new (options: {
   };
 }) => QrCodeWithLogoInstance;
 
-const LOGO_PATH = resolve(
-  process.cwd(),
-  'public/pc-logo/printcampus-logo-w-removebg-preview.png',
-);
+// Vector version of the AT mark. It is embedded as an SVG data URL, so no
+// external image file is needed in the generated QR code.
+const AT_LOGO_SVG = `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123 60">
+    <rect width="123" height="60" fill="#202124"/>
+    <path fill="#4d7fe8" d="M14 47 28 12h11l15 35H44l-3-9H27l-4 9h-9Zm17-16h7l-4-11-3 11Zm20-19h55v9H85v26H75V21H51v-9Z"/>
+  </svg>
+`;
 
 /**
  * Creates an SVG QR code containing the supplied text and the PrintCampus logo.
@@ -42,8 +45,7 @@ export async function generateQrCode(content: string, width = 500): Promise<stri
     throw new TypeError('QR code content must not be empty.');
   }
 
-  const logo = await readFile(LOGO_PATH);
-  const logoDataUrl = `data:image/png;base64,${logo.toString('base64')}`;
+  const logoDataUrl = `data:image/svg+xml,${encodeURIComponent(AT_LOGO_SVG)}`;
 
   const qrCode = new QrCodeWithLogoConstructor({
     content,
@@ -55,8 +57,8 @@ export async function generateQrCode(content: string, width = 500): Promise<stri
     },
     logo: {
       src: logoDataUrl,
-      width: 500,
-      height: 500,
+      width: 123,
+      height: 60,
       bgColor: '#ffffff',
       borderWidth: 8,
       borderRadius: 12,
